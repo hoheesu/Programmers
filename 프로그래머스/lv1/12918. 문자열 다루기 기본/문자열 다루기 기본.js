@@ -1,11 +1,11 @@
 function solution(s) {
-    let n = s.length
-    if (s.includes('e')) return false
-    if(n === 4 || n=== 6){
-        return isNaN(Number(s)) ? false : true
-    }else{
-        return false
-    }
+    var answer = true;
+    if(s.length !== 4 && s.length !== 6) {
+        answer = false   
+    } else {
+          for(const x of s) {
+            if(isNaN(x) === true) answer = false     
+          }
+    }       
+    return answer;
 }
-
-console.log(solution('3e10'))
