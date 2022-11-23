@@ -1,22 +1,23 @@
 function solution(lottos, win_nums) {
-    let ranking = {6:1,5:2,4:3,3:4,2:5,1:6,0:6}
-    let answer = [];
-    let cnt = 0
-    let zeroCnt = 0
-    for( const num of lottos){
-        if( num === 0 ){
-            zeroCnt ++
-        }
-        for( const win of win_nums){
-                if( num === win){
-                    cnt++
-                }
+    var answer = [];
+    var min = 0
+    var max = 0
+    for(const x of lottos) {
+        if(x === 0) max++
+        for(const y of win_nums) {
+            if(x === y) {
+                min++
+                max++
             }
+        }
+    } 
+    while(0 === answer.length || answer.length === 1) {
+        if(min === 6 || max === 6) answer.push(1)   
+        if(min === 5 || max === 5) answer.push(2) 
+        if(min === 4 || max === 4) answer.push(3) 
+        if(min === 3 || max === 3) answer.push(4) 
+        if(min === 2 || max === 2) answer.push(5) 
+        if(min === 1 || max === 1 || min === 0 || max === 0) answer.push(6)    
     }
-
-    answer.push(ranking[cnt+zeroCnt])
-    answer.push(ranking[cnt])
-    
-    
     return answer;
 }
