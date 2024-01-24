@@ -3,15 +3,13 @@ function solution(hp) {
     let remain = hp;
     while ( remain > 0 ) {
         if( remain >= 5){
-            answer += Math.floor(remain / 5);
-            remain = remain % 5;
+            remain -= 5
         } else if( remain >= 3) {
-            answer += Math.floor(remain / 3);
-            remain = remain % 3;            
+            remain -= 3
         } else {
-            answer += remain;
-            remain = 0
+            remain -= 1
         }
+        answer ++
     }
     
     
