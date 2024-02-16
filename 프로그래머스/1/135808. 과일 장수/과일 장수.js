@@ -9,6 +9,5 @@ function solution(k, m, score) {
         answer += score[box] * m
     }
     
-    
     return answer;
 }
