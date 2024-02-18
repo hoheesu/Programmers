@@ -7,6 +7,7 @@ function solution(X, Y) {
     for( let i = 0; i <= 9; i++){
         const xLen = x.filter((e)=> Number(e) === i)
         const yLen = y.filter((e)=> Number(e) === i)
+        
         if( Math.min(xLen.length, yLen.length) !== 0 ){
             answer[i] = Math.min(xLen.length, yLen.length)
         }
