@@ -1,14 +1,1 @@
-function solution(angle) {
-    var answer = 0;
-    
-    if ( 0 < angle && angle < 90 ){
-        return 1
-    }else if ( angle === 90 ){
-        return 2;
-    }else if ( angle === 180){
-        return 4;
-    }else{
-        return 3;
-    }
-    return answer;
-}
+const solution = (angle) => angle < 90 ? 1 : angle === 90 ? 2 : angle ===180 ? 4 : 3
