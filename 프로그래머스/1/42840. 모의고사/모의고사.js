@@ -1,26 +1,17 @@
 function solution(answers) {
- const students = {
-        1: [1, 2, 3, 4, 5],
-        2: [2, 1, 2, 3, 2, 4, 2, 5],
-        3: [3, 3, 1, 1, 2, 2, 4, 4, 5, 5],
+    let result = []
+    let count = [0, 0, 0]
+    const st1 = [1, 2, 3, 4, 5] 
+    const st2 = [2, 1, 2, 3, 2, 4, 2, 5]
+    const st3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+    answers.map((ans, ind) => {
+        if( ans === st1[ind % st1.length] ) count[0] += 1
+        if( ans === st2[ind % st2.length] ) count[1] += 1
+        if( ans === st3[ind % st3.length] ) count[2] += 1
+    })
+    const maxAns = Math.max(...count)
+    for( const i in count){
+        if ( maxAns === count[i] ) result.push(i*1+1)
     }
-    const result = []
-    const arr = {}
-    for (const student in students) {
-        let check = 0;
-        for (let i = 0; i < answers.length; i++) {
-            if (students[student][i % students[student].length] === answers[i]) {
-                check++;
-            }
-             // if( students[student][i] === answers[i] ) check ++
-        }
-        arr[student] = check;
-    }
-
-    const maxScore = Math.max(...Object.values(arr));
-    for (const key in arr) {
-        if (arr[key] === maxScore) result.push(+key);
-    }
-
-    return result;
+    return result
 }
