@@ -7,10 +7,13 @@ function solution(dirs) {
         const calcDir = calcDirs(dir, position)
         if( !calcDir ) continue
         position = calcDir.pos
+        
         const sPos = calcDir.pos.join(',')
+        
         loads.push(sPos+calcDir.temp, calcDir.temp+sPos)
         answer ++
     }
+    
     const sLoads = new Set(loads)
     return answer - (loads.length - sLoads.size) / 2
 }
