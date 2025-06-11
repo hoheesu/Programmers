@@ -1,41 +1,39 @@
 function solution(dirs) {
     let answer = 0;
-    let position = [0, 0]
-    let loads = []
+    const coordinate = [0,0]
+    const temp = [[0,0]]
     
-    for( const dir of dirs ) {
-        const calcDir = calcDirs(dir, position)
-        if( !calcDir ) continue
-        position = calcDir.pos
+    for ( const x of dirs ) {
         
-        const sPos = calcDir.pos.join(',')
-        
-        loads.push(sPos+calcDir.temp, calcDir.temp+sPos)
-        answer ++
+        if(x === "U" && coordinate[1] < 5) { 
+            coordinate[1] ++; 
+            temp.push([...coordinate])
+            answer ++
+        }
+        if(x === "D" && coordinate[1] > -5) { 
+            coordinate[1] -- 
+            temp.push([...coordinate])
+            answer ++
+        }
+        if(x === "L" && coordinate[0] > -5) { 
+            coordinate[0] -- 
+            temp.push([...coordinate])
+            answer ++
+        }
+        if(x === "R" && coordinate[0] < 5) { 
+            coordinate[0] ++
+            temp.push([...coordinate])
+            answer ++
+        } 
     }
     
-    const sLoads = new Set(loads)
-    return answer - (loads.length - sLoads.size) / 2
-}
-
-function calcDirs (dir, pos) {
-    const temp = pos.join(',')
-    if( dir === 'U' ) {
-        if(pos[1] === 5) return null
-        pos[1] += 1
-    }
-    if( dir === 'D' ) {
-        if(pos[1] === -5) return null
-        pos[1] -= 1
-    }
-    if( dir === 'L' ) {
-        if(pos[0] === -5) return null
-        pos[0] -= 1
-        
-    }
-    if( dir === 'R' ) {
-        if(pos[0] === 5) return null
-        pos[0] += 1
-    }
-    return { pos, temp }
+    
+//     for( let i = 0; i <= temp.length; i++ ) {
+//         if( i%2 === 1){
+            
+//         }
+//     }
+    
+    
+    return answer;
 }
