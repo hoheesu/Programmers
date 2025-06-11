@@ -1,33 +1,26 @@
-function solution([...s]) {
-    let answer = 0
-    let i = 0; 
-    let stack = []
-    
-    while ( i < s.length ) {
-        const newString = s.shift()
-        s.push(newString)
-        
-        for( const x of s ) {
-            stack.push(x)
-
-            if( x === ")" ) {
-                if( stack[stack.length - 2] !== "(" ) break
-            }
-            if( x === "}" ) {
-                if( stack[stack.length - 2] !== "{" ) break
-            }
-            if( x === "]" ) {
-                if( stack[stack.length - 2] !== "[" ) break
-            }
-            if( x === "(" || x === "{" || x === "[" ) continue
-            
-            stack.pop()
-            stack.pop()
+function isRight(str){
+    const stack = [];
+    for(const x of str){
+        if(x=='[' || x=='{' || x=='('){
+            stack.push(x);
         }
-        if( !stack.length ) answer ++
-        
-        i++
-        stack = []
+        else{
+            const tmp = stack.pop();
+            if(x==')' && tmp=='(') continue;
+            if(x=='}' && tmp=='{') continue;
+            if(x==']' && tmp=='[') continue;
+            return false;
+        }
     }
-    return answer
+    return !stack.length;
+}
+
+function solution([...s]) {
+    var answer = 0;
+    for(let i = 0; i < s.length; i++){
+        const tmp = s.shift();
+        s.push(tmp);
+        if(isRight(s)) answer++;
+    }
+    return answer;
 }
