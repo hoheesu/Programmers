@@ -1,21 +1,32 @@
 function solution(progresses, speeds) {
-    let answer = [];
-    let workStack = [];
-    let count = 0;
+    const answer = [];
+    const arr = []
     
-    for( let i = 0; i < progresses.length; i ++ ) {
-        workStack.push(Math.ceil((100 - progresses[i]) / speeds[i]))
+    for ( const i in progresses ) {
+        arr.push(Math.ceil((100 - progresses[i]) / speeds[i]))
     }
-    
-    let maxTime = workStack[0]
-    workStack.forEach((e,i)=>{
-        if(maxTime === Math.max(maxTime, e)) count++
-        else {
-            answer.push(count)
-            maxTime = e
-            count = 1
+    let cnt = 0; 
+    let tmp = -1; 
+    while(1) {
+        const x = arr.shift();
+        
+        if( tmp === -1 ) {
+            cnt = 0; 
+            tmp = x
         }
-        if( workStack.length - 1 === i) answer.push(count)
-    })
-    return answer
+         console.log(cnt, tmp, answer)
+       
+        if( tmp < x ) {
+            answer.push(cnt)
+            cnt = 0; 
+            tmp = x
+        }
+        if( tmp >= x) {
+            cnt++
+        }
+        if(!arr.length){
+            answer.push(cnt)
+            return answer;
+        }
+    }
 }
