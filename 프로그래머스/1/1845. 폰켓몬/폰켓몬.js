@@ -1,7 +1,11 @@
 function solution(nums) {
-    let numsHash = new Map()
-    for(const x of nums){
-        numsHash.set(x, (numsHash.get(x) || 0) + 1)
+    const half =  nums.length / 2;
+    const hash = new Map()
+    
+    for ( const num of nums ) {
+        hash.set(num,( hash.get(num) || 0 ) + 1 )
     }
-    return nums.length / 2 >= numsHash.size ? numsHash.size : nums.length / 2
+    
+    const temp = hash.size
+    return half <= temp ? half : temp
 }
