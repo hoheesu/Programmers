@@ -1,24 +1,22 @@
 function solution(n, words) {
-    // let wrong = 0;
-    let wrong = []
+    const answer = [];
+    let turn = 0;
+    const hash = new Map();
     
-    for( let i = 0; i < words.length-1; i++){
-        const word = words[i]
-        let nextWordA = words[i + 1]
-        if(word[word.length-1] !== nextWordA[0]){
-            wrong.push(i+2)
+    for ( let i = 0; i < words.length; i++ ) {
+        const word = words[i];
+        const prevWord = words[i-1]
+        const x = hash.get(word);
+        if( i && (word[0] !== prevWord[prevWord.length-1]) ) {
+            turn = i + 1;
+            break;
         }
-        if(words.includes(word,i+1)){
-            wrong.push(words.indexOf(word,i+1) + 1)
+        if( x ){ 
+            turn = i + 1;
+            break;
         }
-    }          
-    wrong.sort((a,b)=>a-b)
-    wrong = wrong[0]
-    return !wrong ? [0,0] : [wrong % n ? wrong % n : n , Math.ceil(wrong / n)]
-
+        hash.set(word, hash.get(word) || true)
+    }
+    console.log(turn)
+    return turn ? [turn % n ? turn % n : n, Math.ceil(turn / n)] : [0,0]
 }
-
-console.log(solution(4, ['a','aba','aba','a']))
-// console.log(solution(2, ['land', 'dream', 'mom', 'mom', 'ror']))
-// console.log(solution(2, ["land", "dream", "mom", "mom"]))
-
