@@ -1,11 +1,9 @@
 function solution(phone_book) {
-    let answer = true
-    phone_book.sort().forEach((e,i)=>{
-        if( i < phone_book.length - 1 ) {
-            if( e === phone_book[i + 1].slice(0, e.length) ) {
-                return answer = false
-            }
+    const new_pb = phone_book.sort();
+    for (let i = 0; i < new_pb.length - 1; i++) {
+        if (new_pb[i + 1].startsWith(new_pb[i])) {
+            return false;
         }
-    })
-    return answer
+    }
+    return true;
 }
