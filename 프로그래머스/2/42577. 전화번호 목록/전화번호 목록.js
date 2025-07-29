@@ -1,10 +1,11 @@
 function solution(phone_book) {
     let answer = true
-    const new_pb = phone_book.sort()
-    for( let i = 0; i < phone_book.length; i ++ ) {
-            if( i < new_pb.length - 1 && new_pb[i] === new_pb[i + 1].slice(0, new_pb[i].length) ) {
-                return false
+    phone_book.sort().forEach((e,i)=>{
+        if( i < phone_book.length - 1 ) {
+            if( e === phone_book[i + 1].slice(0, e.length) ) {
+                return answer = false
             }
-    }
+        }
+    })
     return answer
 }
